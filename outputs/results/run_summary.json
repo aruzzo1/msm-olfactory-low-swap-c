@@ -1,0 +1,232 @@
+{
+  "data_root_is_synthetic": false,
+  "settings": {
+    "k_regimes": 3,
+    "fallback_k_regimes": 2,
+    "msm_min_points": 200,
+    "em_iter": 20,
+    "search_reps": 20,
+    "search_iter": 30,
+    "station_window": 200,
+    "station_step": 20,
+    "station_min_points": 400,
+    "image_width": 256,
+    "test_size": 0.3,
+    "random_state": 42,
+    "rf_n_estimators": 800,
+    "batch_size": 8,
+    "epochs": 20,
+    "learning_rate": 0.001,
+    "base_seed": 42,
+    "normalize_sample_ids": false,
+    "workers": 24,
+    "run_deep_models": true,
+    "example_sample_id": null
+  },
+  "ingestion": {
+    "tic_rows": 1958444,
+    "samples": 267,
+    "rows_missing_metadata": 1481669,
+    "labelled_samples": 65,
+    "labelled_by_hospital": {
+      "Boston": 38,
+      "Duke": 27
+    },
+    "labelled_by_class": {
+      "0": 27,
+      "1": 38
+    }
+  },
+  "msm": {
+    "fitted_samples": 267,
+    "failed_samples": [],
+    "k_used_counts": {
+      "3": 266,
+      "2": 1
+    }
+  },
+  "illustrative_figures": {
+    "figures": [
+      "01",
+      "02",
+      "04"
+    ],
+    "data": "synthetic illustrative chromatogram (not source data)"
+  },
+  "example_sample": {
+    "selection": "fixed reference sample used by the source notebook; identity not published",
+    "n_points": 7335,
+    "k_used": 3,
+    "llf": -5378.630844387349,
+    "aic": 10777.261688774697,
+    "bic": 10846.265815680468,
+    "regime_occupancy": {
+      "0": 0.08970688479890934,
+      "1": 0.5270620313565099,
+      "2": 0.38323108384458077
+    },
+    "n_windows": 357,
+    "adf_p_range": [
+      2.5861353951582656e-20,
+      1.0
+    ],
+    "kpss_p_range": [
+      0.01,
+      0.1
+    ]
+  },
+  "tabular_baselines": {
+    "n_train": 45,
+    "n_val": 20,
+    "always_cancer_val_f1": 0.7499999999999999,
+    "class_counts": {
+      "0": 27,
+      "1": 38
+    },
+    "n_msm_group_features": 17,
+    "n_stationarity_features": 9,
+    "dropped_constant_features": [
+      "n_points",
+      "k_used",
+      "n_station_windows",
+      "frac_kpss_p_lt_0_01"
+    ],
+    "logreg_msm_group": {
+      "accuracy": 0.5,
+      "f1": 0.5454545454545454,
+      "roc_auc": 0.48958333333333337,
+      "pr_auc": 0.700146557160876,
+      "confusion_matrix": [
+        [
+          4,
+          4
+        ],
+        [
+          6,
+          6
+        ]
+      ]
+    },
+    "logreg_all_features": {
+      "accuracy": 0.35,
+      "f1": 0.38095238095238093,
+      "roc_auc": 0.3125,
+      "pr_auc": 0.5899642711949213,
+      "confusion_matrix": [
+        [
+          3,
+          5
+        ],
+        [
+          8,
+          4
+        ]
+      ]
+    },
+    "random_forest_all_features": {
+      "accuracy": 0.45,
+      "f1": 0.5217391304347826,
+      "roc_auc": 0.2708333333333333,
+      "pr_auc": 0.49580287703352716,
+      "confusion_matrix": [
+        [
+          3,
+          5
+        ],
+        [
+          6,
+          6
+        ]
+      ]
+    }
+  },
+  "image_panel_samples": {
+    "n_cancer": 4,
+    "n_non_cancer": 4,
+    "selection": "numpy default_rng(42) draw, as in the source; IDs not published"
+  },
+  "pca": {
+    "n_labelled_samples": 65,
+    "n_model_features": 30,
+    "model_feature_columns": [
+      "n_points",
+      "k_used",
+      "llf",
+      "aic",
+      "bic",
+      "regime_frac_0",
+      "regime_frac_1",
+      "regime_frac_2",
+      "trans_0_0",
+      "trans_0_1",
+      "trans_0_2",
+      "trans_1_0",
+      "trans_1_1",
+      "trans_1_2",
+      "trans_2_0",
+      "trans_2_1",
+      "trans_2_2",
+      "age",
+      "psa",
+      "n_station_windows",
+      "frac_adf_p_lt_0_05",
+      "frac_adf_p_lt_0_01",
+      "frac_kpss_p_lt_0_05",
+      "frac_kpss_p_lt_0_01",
+      "frac_both_p_lt_0_05",
+      "frac_adf_high_kpss_low",
+      "mean_adf_p",
+      "median_adf_p",
+      "mean_kpss_p",
+      "median_kpss_p"
+    ],
+    "tic_summary_pc12_explained_variance": [
+      0.942349059923331,
+      0.05341871558516751
+    ],
+    "msm_pc12_explained_variance": [
+      0.3870005666434787,
+      0.15241417818079744
+    ],
+    "after_combat_pc12_explained_variance": [
+      0.20366057005062646,
+      0.19586384832558784
+    ],
+    "combat_output_nan_values": 0
+  },
+  "deep_models": {
+    "n_train": 45,
+    "n_val": 20,
+    "val_class_counts": {
+      "0": 8,
+      "1": 12
+    },
+    "always_cancer_val_f1": 0.7499999999999999,
+    "best_val_f1": {
+      "TIC-image CNN": 0.75,
+      "MSM-feature MLP": 0.5384615384615384,
+      "Multi-modal gated ResNet18": 0.75
+    },
+    "best_epoch": {
+      "TIC-image CNN": 1,
+      "MSM-feature MLP": 6,
+      "Multi-modal gated ResNet18": 1
+    },
+    "final_epoch_val_f1": {
+      "TIC-image CNN": 0.5714285714285714,
+      "MSM-feature MLP": 0.48,
+      "Multi-modal gated ResNet18": 0.5833333333333334
+    },
+    "computational_overhead": {
+      "cnn_seconds_per_batch": 0.005002266669180244,
+      "mlp_seconds_per_batch": 0.00012590000793958703,
+      "speedup_cnn_over_mlp": 39.73205999780855,
+      "cnn_parameters": 1072066,
+      "mlp_parameters": 4130,
+      "multimodal_parameters": 11396931,
+      "cnn_inputs_per_sample": 1024,
+      "mlp_inputs_per_sample": 30,
+      "note": "Forward pass only. Excludes MSM fitting and rolling ADF/KPSS, which the MLP's inputs and the image's rows 1-3 both require."
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "measured": {
+    "forward_seconds_per_batch8_1thread": {
+      "TIC-image CNN": 0.0038163999997777864,
+      "MSM-feature MLP": 5.704999784938991e-05,
+      "Multi-modal gated ResNet18": 0.31694014999084175
+    },
+    "forward_seconds_per_sample_1thread": {
+      "TIC-image CNN": 0.0006021500012138858,
+      "MSM-feature MLP": 5.0300004659220576e-05,
+      "Multi-modal gated ResNet18": 0.04932434999500401
+    },
+    "feature_extraction_seconds_per_sample_median": {
+      "msm_fit": 12.419101800012868,
+      "rolling_adf_kpss": 1.4736752000171691,
+      "image_assembly": 0.0004731999943032861,
+      "intensity_only_resample": 6.549998943228275e-05
+    },
+    "n_samples_timed": 5
+  },
+  "calculated": {
+    "speedup_cnn_over_mlp_batch8": 66.89570803934042,
+    "parameters": {
+      "TIC-image CNN": 1072066,
+      "MSM-feature MLP": 4130,
+      "Multi-modal gated ResNet18": 11396931
+    },
+    "parameter_reduction_cnn_over_mlp": 259.58014527845035,
+    "weights_bytes_float32": {
+      "TIC-image CNN": 4288264,
+      "MSM-feature MLP": 16520,
+      "Multi-modal gated ResNet18": 45587724
+    },
+    "classifier_inputs_per_sample": {
+      "TIC-image CNN": 1024,
+      "MSM-feature MLP": 30
+    },
+    "classifier_input_reduction": 34.13333333333333,
+    "classifier_input_bytes_float32": {
+      "TIC-image CNN": 4096,
+      "MSM-feature MLP": 120
+    },
+    "raw_tic_values_per_sample": 14670,
+    "raw_tic_bytes_float32": 58680,
+    "end_to_end_seconds_per_sample": {
+      "MLP path (MSM + ADF/KPSS + MLP)": 13.892827300034696,
+      "CNN path as implemented (MSM + ADF/KPSS + image + CNN)": 13.893852350025554
+    }
+  },
+  "notes": [
+    "Timings are machine-specific (this run: desktop CPU, 1 PyTorch thread); ratios are more portable than absolute values.",
+    "Both implemented classifiers need the MSM fit and rolling ADF/KPSS: the MLP's 30 inputs come from them, and rows 1-3 of the CNN's image are MSM regime and ADF/KPSS channels.",
+    "The input-size reduction applies between feature extraction and the classifier. Either path must first acquire and process the full raw TIC on the device."
+  ],
+  "classifier_timings": [
+    {
+      "model": "TIC-image CNN",
+      "batch_size": 1,
+      "threads": 1,
+      "median_seconds_per_batch": 0.0006021500012138858,
+      "parameters": 1072066
+    },
+    {
+      "model": "TIC-image CNN",
+      "batch_size": 8,
+      "threads": 1,
+      "median_seconds_per_batch": 0.0038163999997777864,
+      "parameters": 1072066
+    },
+    {
+      "model": "MSM-feature MLP",
+      "batch_size": 1,
+      "threads": 1,
+      "median_seconds_per_batch": 5.0300004659220576e-05,
+      "parameters": 4130
+    },
+    {
+      "model": "MSM-feature MLP",
+      "batch_size": 8,
+      "threads": 1,
+      "median_seconds_per_batch": 5.704999784938991e-05,
+      "parameters": 4130
+    },
+    {
+      "model": "Multi-modal gated ResNet18",
+      "batch_size": 1,
+      "threads": 1,
+      "median_seconds_per_batch": 0.04932434999500401,
+      "parameters": 11396931
+    },
+    {
+      "model": "Multi-modal gated ResNet18",
+      "batch_size": 8,
+      "threads": 1,
+      "median_seconds_per_batch": 0.31694014999084175,
+      "parameters": 11396931
+    }
+  ],
+  "feature_extraction_timings": [
+    {
+      "n_points": 7335,
+      "msm_fit_seconds": 11.564310499990825,
+      "rolling_adf_kpss_seconds": 1.4736752000171691,
+      "image_assembly_seconds": 0.0004731999943032861,
+      "intensity_resample_seconds": 5.3800002206116915e-05
+    },
+    {
+      "n_points": 7335,
+      "msm_fit_seconds": 11.01326949999202,
+      "rolling_adf_kpss_seconds": 1.6069015999964904,
+      "image_assembly_seconds": 0.0008913000056054443,
+      "intensity_resample_seconds": 0.00012989999959245324
+    },
+    {
+      "n_points": 7335,
+      "msm_fit_seconds": 12.9326493999979,
+      "rolling_adf_kpss_seconds": 1.3944239999982528,
+      "image_assembly_seconds": 0.00045549997594207525,
+      "intensity_resample_seconds": 6.335000216495246e-05
+    },
+    {
+      "n_points": 7335,
+      "msm_fit_seconds": 12.955524699995294,
+      "rolling_adf_kpss_seconds": 1.363212600001134,
+      "image_assembly_seconds": 0.00044090001028962433,
+      "intensity_resample_seconds": 6.549998943228275e-05
+    },
+    {
+      "n_points": 7335,
+      "msm_fit_seconds": 12.419101800012868,
+      "rolling_adf_kpss_seconds": 1.6017108999949414,
+      "image_assembly_seconds": 0.0006374999938998371,
+      "intensity_resample_seconds": 0.0001083499810192734
+    }
+  ],
+  "data_is_synthetic": false
+}

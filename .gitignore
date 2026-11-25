@@ -1,0 +1,92 @@
+# =====================================================================================================================
+# SOURCE DATA IS NEVER COMMITTED. The original model-input data (GC-MS chromatograms, clinical metadata, and anything
+# derived from them at sample level) is excluded. See data/README.md.
+# =====================================================================================================================
+
+# --- Data directories: everything under data/ except its README ------------------------------------------------------
+data/*
+!data/README.md
+
+# --- Source and sample-level data formats, wherever they appear ------------------------------------------------------
+tic_back.csv
+*.D/
+*.parquet
+*.feather
+*.arrow
+*.h5
+*.hdf5
+*.npy
+*.npz
+*.pkl
+*.pickle
+*.joblib
+*.xls
+*.xlsx
+*.zip
+*.gz
+*.tar
+*.7z
+*.mat
+*.cdf
+*.mzML
+*.mzXML
+
+# CSV/JSON may hold source or sample-level exports. Only the aggregate results in outputs/results/ are publishable.
+*.csv
+*.json
+!outputs/results/*.csv
+!outputs/results/*.json
+
+# --- Generated caches: per-sample tables (contain clinical values), fitted dynamics, TIC images -----------------------
+outputs/cache/
+outputs/synthetic_demo/
+
+# --- Private material kept locally only: reports, source-notebook figures, notes --------------------------------------
+private/
+*.docx
+*.doc
+*.pptx
+*.pdf
+
+# --- Secrets and local configuration ----------------------------------------------------------------------------------
+.env
+.env.*
+config.json
+kaggle.json
+*.key
+*.pem
+*.token
+secrets*
+
+# --- Python ----------------------------------------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# --- Virtual environments --------------------------------------------------------------------------------------------
+.venv/
+venv/
+env/
+
+# --- Jupyter ---------------------------------------------------------------------------------------------------------
+.ipynb_checkpoints/
+
+# --- Logs, temporary and OS files ------------------------------------------------------------------------------------
+*.log
+*.tmp
+*.bak
+~$*
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- IDEs ------------------------------------------------------------------------------------------------------------
+.vscode/
+.idea/

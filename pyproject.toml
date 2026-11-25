@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "msm-olfactory-low-swap-c"
+version = "1.0.0"
+description = "Markov-switching and stationarity modeling for resource-constrained machine olfaction (proof of concept)"
+authors = [{ name = "Amelia Ruzzo" }]
+license = { text = "Copyright (c) 2026 Amelia Ruzzo. All rights reserved. No open-source license is granted." }
+urls = { Repository = "https://github.com/aruzzo1/msm-olfactory-low-swap-c" }
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dynamic = ["dependencies"]
+
+[project.optional-dependencies]
+dev = ["ruff>=0.8"]
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::UserWarning"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+extend-include = ["*.ipynb"]
+
+[tool.ruff.lint]
+select = [
+    "E", "W",   # pycodestyle
+    "F",        # pyflakes
+    "I",        # import sorting
+    "B",        # bugbear
+    "UP",       # pyupgrade
+    "SIM",      # simplifications
+    "N",        # naming
+    "D",        # docstrings (public API)
+    "RUF",      # ruff-specific
+]
+ignore = [
+    "D203", "D213",          # pick one docstring layout (summary on the first line, no blank before class)
+    "D105", "D107",          # magic methods / __init__ documented by the class docstring where needed
+    "D401",                  # noun-phrase summaries ("Number of ...") are fine for accessors and helpers
+    "N803", "N806",          # X, X_train etc. follow the scientific-Python convention for matrices
+    "RUF001", "RUF002", "RUF003",  # intentional unicode (×, −, µ) in labels and docstrings
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D"]                     # test names describe the behaviour
+"notebooks/*" = ["D", "E402", "E501"] # notebook cells: explanatory code, imports in a setup cell
+"scripts/*" = ["D401"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.format]
+quote-style = "double"

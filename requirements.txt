@@ -1,0 +1,35 @@
+# Runtime and test requirements for MSM Olfactory Low-SWaP-C.
+#
+# The original notebook (Google Colab, 2025) did not record package versions. The lower bounds below are
+# RECONSTRUCTED: they are the versions this project was installed and tested with on Python 3.12, not the
+# historical Colab versions.
+
+# Arrays, tables, Parquet caching
+numpy>=2.0
+pandas>=2.2
+pyarrow>=17.0
+
+# Markov switching regression (MarkovRegression) and ADF / KPSS stationarity tests
+statsmodels>=0.14
+
+# Scaling, PCA, logistic regression, random forest, train/validation split, metrics
+scikit-learn>=1.5
+
+# Empirical Bayes (ComBat) batch harmonization
+neuroCombat>=0.2.12
+
+# Figures and TIC image files
+matplotlib>=3.9
+pillow>=10.4
+
+# CNN, MLP and gated multi-modal ResNet18 (CPU build is sufficient)
+torch>=2.4
+torchvision>=0.19
+
+# Notebook execution in VS Code / Jupyter
+ipykernel>=6.29
+nbclient>=0.10
+nbformat>=5.10
+
+# Tests
+pytest>=8.3
